@@ -6,11 +6,12 @@ import java.awt.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import java.util.Random;
+import javax.imageio.stream.ImageInputStream;
 
 class ImageCypher extends Component {
 
     // How many columns to multiply by itself
-    private int numLocs = 3;
+    private int numLocs = 4;
     // Best Way to ensure even number of elements
     private int numCells = (int) Math.pow(numLocs, 2);
     // Array of cells
@@ -45,10 +46,10 @@ class ImageCypher extends Component {
     // Seed value used in decryption method
     void cypher() {
         Random rand = new Random();
-        rand.setSeed((long) (Math.pow(3,2)));
+        rand.setSeed(4);
         int rowIndex;
         for (int i = 0; i < numCells; i++) {
-            while ((rowIndex = rand.nextInt(numLocs)) == i);
+            rowIndex = rand.nextInt(numLocs);
 
             int temp = cells[i];
             cells[i] = cells[rowIndex];
@@ -57,17 +58,22 @@ class ImageCypher extends Component {
     }
 
     void decypher() {
+        for (int h = 0; h <=14; h++ ) {
         Random rand = new Random();
-        rand.setSeed((long) Math.pow(numLocs, 2) * 8);
+        rand.setSeed(4);
         int rowIndex;
-        for (int i = 0; i < numCells; i++) {
-            while ((rowIndex = rand.nextInt(numLocs)) == i);
 
-            int temp = cells[i];
-            cells[i] = cells[rowIndex];
-            cells[rowIndex] = temp;
+
+
+            for (int i = 0; i < numCells; i++) {
+                rowIndex = rand.nextInt(numLocs);
+
+                int temp = cells[i];
+                cells[i] = cells[rowIndex];
+                cells[rowIndex] = temp;
+            }
         }
-    }
+   }
 
     // Part of Component Class
     public Dimension getPreferredSize() {
@@ -91,9 +97,9 @@ class ImageCypher extends Component {
                 destY = (cell % numLocs) * copyHeight;
 
                 g.drawImage(newImg,
-                        destX, destY, destX + copyWidth, destY + copyHeight,
-                        srcX, srcY, srcX + copyWidth, srcY + copyHeight,
-                        null);
+                    destX, destY, destX + copyWidth, destY + copyHeight,
+                    srcX, srcY, srcX + copyWidth, srcY + copyHeight,
+                    null);
             }
         }
     }

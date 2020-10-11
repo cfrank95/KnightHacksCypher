@@ -29,7 +29,7 @@ public class CypherInterface extends JApplet {
 
         // Create button objects for Encryption/ Decryption
         JButton btnEncrypt = new JButton("Encrypt");
-         JButton btnDecrypt = new JButton("Decrypt");
+        JButton btnDecrypt = new JButton("Decrypt");
 
         // JLabel encryptionLabel = new JLabel("Encrypt / Decrypt Selected Image");
 
@@ -48,7 +48,7 @@ public class CypherInterface extends JApplet {
             cyphImg.decypher();
             cyphImg.repaint();
             // encryptionLabel.setText("Image Decrypted");
-      });
+        });
 
         Dimension cypherSize = cyphImg.getPreferredSize();
 
