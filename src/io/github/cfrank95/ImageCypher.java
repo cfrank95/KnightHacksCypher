@@ -10,7 +10,7 @@ import java.util.Random;
 class ImageCypher extends Component {
 
     // How many columns to multiply by itself
-    private int numLocs = 100;
+    private int numLocs = 3;
     // Best Way to ensure even number of elements
     private int numCells = (int) Math.pow(numLocs, 2);
     // Array of cells
@@ -45,7 +45,20 @@ class ImageCypher extends Component {
     // Seed value used in decryption method
     void cypher() {
         Random rand = new Random();
-        rand.setSeed(randSeed);
+        rand.setSeed((long) (Math.pow(3,2)));
+        int rowIndex;
+        for (int i = 0; i < numCells; i++) {
+            while ((rowIndex = rand.nextInt(numLocs)) == i);
+
+            int temp = cells[i];
+            cells[i] = cells[rowIndex];
+            cells[rowIndex] = temp;
+        }
+    }
+
+    void decypher() {
+        Random rand = new Random();
+        rand.setSeed((long) Math.pow(numLocs, 2) * 8);
         int rowIndex;
         for (int i = 0; i < numCells; i++) {
             while ((rowIndex = rand.nextInt(numLocs)) == i);

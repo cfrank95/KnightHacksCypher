@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class Main {
     // Load image file here
-    public static String imageFileName = "C:\\Users\\Kris\\Pictures\\Wallpapers\\knighthacks.jpg";
+    public static String imageFileName = "C:\\Users\\Joe\\Pictures\\Customization\\pbi4.jpeg";
 
     // Enter URL Image here
     public static URL imageSrc = null;
